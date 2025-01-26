@@ -1,0 +1,138 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    /* background-color: #f1f1f1; */
+    /* gradient background */
+    background: linear-gradient(to right, #007bff, #dff3f8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 62%;
+    height: 67%;
+    overflow: hidden;
+}
+
+/* Left Side: Login Form */
+.login-box {
+    flex: 1;
+    padding: 40px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-box h2 {
+    text-align: center;
+    margin-bottom: 45px;
+    font-size: 40px;
+    color: #333;
+}
+
+.input-field {
+    margin-bottom: 50px;
+}
+
+.input-field label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 22px;
+    color: #333;
+}
+
+.input-field input {
+    width: 92%;
+    padding: 22px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 22px;
+    color: grey;
+}
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.options a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.options a:hover {
+    text-decoration: underline;
+}
+
+.login-btn {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    text-transform: uppercase;
+}
+
+.login-btn:hover {
+    background-color: #0056b3;
+}
+
+p {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+p a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
+
+/* Right Side: Illustration */
+.welcome-box {
+    flex: 1;
+    background-color: #007bff;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    text-align: center;
+}
+
+.welcome-box h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.welcome-box p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.welcome-box img {
+    width: 50%;
+    height: 50%;
+    border-radius: 60%;
+}
