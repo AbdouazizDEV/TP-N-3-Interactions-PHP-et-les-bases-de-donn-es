@@ -1,57 +1,115 @@
+/* Style global */
 body {
     font-family: 'Arial', sans-serif;
-    max-width: 600px;
+    max-width: 700px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f4f4f4;
+    background-color: #f9f9f9;
     line-height: 1.6;
+    color: #444;
 }
 
+/* Titre principal */
 h1 {
     text-align: center;
-    color: #333;
+    color: #222;
     border-bottom: 2px solid #007bff;
     padding-bottom: 10px;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
 }
 
+/* Formulaire */
 form {
     background-color: white;
-    padding: 30px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 25px 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-input, textarea {
+form:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Champs de formulaire */
+input, textarea, select {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin-bottom: 15px;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 6px;
     box-sizing: border-box;
+    font-size: 1rem;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 textarea {
     resize: vertical;
-    min-height: 100px;
+    min-height: 120px;
 }
 
+/* Effets de focus sur les champs */
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    background-color: #fff;
+}
+
+/* Boutons */
 button {
     width: 100%;
-    padding: 12px;
+    padding: 14px;
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 button:hover {
     background-color: #0056b3;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-input:focus, textarea:focus {
-    outline: none;
+/* Lien pour ajouter ou supprimer des images */
+.add-image-btn, .remove-image-btn {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #007bff;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.add-image-btn:hover, .remove-image-btn:hover {
+    color: #0056b3;
+}
+
+/* Conteneur pour les images */
+.image-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.image-preview {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 5px;
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: cover;
+}
+
+.image-preview:hover {
     border-color: #007bff;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
