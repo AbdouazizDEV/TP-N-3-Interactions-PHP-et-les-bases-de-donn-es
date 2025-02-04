@@ -1,9 +1,9 @@
 body {
     font-family: 'Arial', sans-serif;
-    max-width: 1000px;
+    max-width: 100%;
     margin: 0 auto;
-    padding: 20px;
-    background-color: #f4f4f4;
+    padding: 45px;
+    background: linear-gradient(to right, #007bff, #dff3f8);
     line-height: 1.6;
 }
 

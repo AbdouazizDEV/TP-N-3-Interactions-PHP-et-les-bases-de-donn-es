@@ -122,4 +122,75 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     header("Location: ../appartements.php");
     exit();
 }
+
+/* logique pour la modification d'un appartement */
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    try {
+        // Validation des données
+       // $idApp = filter_input(INPUT_POST, 'idApp', FILTER_VALIDATE_INT);
+        $nbreChambres = filter_input(INPUT_POST, 'nbreChambres', FILTER_VALIDATE_INT);
+        $nbreSalleBain = filter_input(INPUT_POST, 'nbreSalleBain', FILTER_VALIDATE_INT);
+        $etage = filter_input(INPUT_POST, 'etage', FILTER_VALIDATE_INT);
+        
+        // Vérification des valeurs requises
+        if (!$nbreChambres || !$nbreSalleBain || !isset($etage) ) {
+            throw new Exception("Toutes les données requises doivent être fournies");
+        }
+
+        // Vérification des valeurs positives
+        if ($nbreChambres < 1 || $nbreSalleBain < 1 || $etage < 0) {
+            throw new Exception("Les nombres de chambres et de salles de bain doivent être positifs, et l'étage ne peut pas être négatif");
+        }
+
+        // Démarrer la transaction
+        $pdo->beginTransaction();
+
+        if ($idApp) {
+            // Mise à jour de l'appartement existant
+            $sqlAppartement = "UPDATE Appartement 
+                              SET nbreChambres = :nbreChambres, 
+                                  nbreSalleBain = :nbreSalleBain, 
+                                  etage = :etage, 
+                                  idIm = :idIm 
+                              WHERE idApp = :idApp";
+            $stmtAppartement = $pdo->prepare($sqlAppartement);
+            $stmtAppartement->execute([
+                ':nbreChambres' => $nbreChambres,
+                ':nbreSalleBain' => $nbreSalleBain,
+                ':etage' => $etage,
+                ':idIm' => $idIm,
+                ':idApp' => $idApp
+            ]);
+        } else {
+            // Insertion d'un nouvel appartement
+            $sqlAppartement = "INSERT INTO Appartement (nbreChambres, nbreSalleBain, etage, idIm) 
+                              VALUES (:nbreChambres, :nbreSalleBain, :etage, :idIm)";
+            $stmtAppartement = $pdo->prepare($sqlAppartement);
+            $stmtAppartement->execute([
+                ':nbreChambres' => $nbreChambres,
+                ':nbreSalleBain' => $nbreSalleBain,
+                ':etage' => $etage,
+                ':idIm' => $idIm
+            ]);
+            $idApp = $pdo->lastInsertId();
+        }
+
+        // Valider la transaction
+        $pdo->commit();
+
+        // Rediriger avec un message de succès
+        header("Location: ../appartements.php?success=1");
+        exit();
+
+    } catch (Exception $e) {
+        // En cas d'erreur, annuler la transaction
+        if ($pdo->inTransaction()) {
+            $pdo->rollBack();
+        }
+
+        // Rediriger avec un message d'erreur
+        header("Location: ../appartements.php?error=" . urlencode($e->getMessage()));
+        exit();
+    }
+}
 ?>
